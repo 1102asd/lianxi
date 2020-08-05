@@ -1,0 +1,56 @@
+{% extends 'layout.html' %}
+
+
+{% block css %}
+
+{% endblock %}
+
+{% block content %}
+    <h1>修改学生信息</h1>
+    <form action="/update_student/" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+        <table>
+            <tr>
+                <td>学生ID</td>
+                <td>
+                    <input type="text" value="{{ stu_list.id }}" name='update_student_id' readonly>
+                </td>
+            </tr>
+            <tr>
+                <td>学生名字</td>
+                <td>
+                    <input type="text" placeholder="{{ stu_list.name }}" name="stu_name">
+                </td>
+            </tr>
+            <tr>
+                <td>所有班级</td>
+                <td>
+                    <select name="cls_id" style="width: 100px; font-size: 15px; height: 30px">
+                        {% for cls in cla_list %}
+                            <option value="{{ cls.id }}">{{ cls.cla_name }}</option>
+                        {% endfor %}
+
+                    </select>
+                </td>
+            </tr>
+{#            <tr>#}
+{#                <td>所选班级的授课老师</td>#}
+{#                <td>#}
+{##}
+{#                           {{ cla.teacher_name }}#}
+{#                    #}
+{#                </td>#}
+{#            </tr>#}
+            <tr>
+                <td></td>
+                <td>
+                    <input name="提交" type="submit">
+                </td>
+            </tr>
+        </table>
+    </form>
+{% endblock %}
+{% block js %}
+
+{% endblock %}
+

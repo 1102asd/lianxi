@@ -1,0 +1,199 @@
+{% extends 'liebiao.html' %}
+
+
+{% block css %}
+    <style>
+    h2 {
+        text-align: center;
+        font-size: 18px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: white;
+        padding: 30px 0;
+    }
+
+    /* Table Styles */
+
+    .table-wrapper {
+        background: rgba(71, 147, 227, 1);
+        margin: 10px 70px 70px;
+        box-shadow: 0px 35px 50px rgba(0, 0, 0, 0.2);
+    }
+
+    .fl-table {
+        border-radius: 5px;
+        font-size: 12px;
+        font-weight: normal;
+        border: none;
+        border-collapse: collapse;
+        width: 100%;
+        max-width: 100%;
+        white-space: nowrap;
+        background-color: white;
+    }
+
+    .fl-table td, .fl-table th {
+        text-align: center;
+        padding: 8px;
+    }
+
+    .fl-table td {
+        border-right: 1px solid #f8f8f8;
+        font-size: 12px;
+    }
+
+    .fl-table thead th {
+        color: #ffffff;
+        background: #4FC3A1;
+    }
+
+
+    .fl-table thead th:nth-child(odd) {
+        color: #ffffff;
+        background: #324960;
+    }
+
+    .fl-table tr:nth-child(even) {
+        background: #F8F8F8;
+    }
+
+    .fl-table td  a {
+        text-decoration: none;
+        color: black;
+    }
+
+    .fl-table td a:active,.fl-table td  a:hover{
+        color: red;
+    }
+    .fl-table td a:visited{
+        color: blue;
+    }
+    .fl-table td button a {
+        text-decoration: none;
+        color: black;
+    }
+
+    .fl-table td button a:active,.fl-table td button a:hover{
+        color: black;
+    }
+    .fl-table td button a:visited{
+        color: black;
+    }
+    /* Responsive */
+
+    @media (max-width: 767px) {
+        .fl-table {
+            display: block;
+            width: 100%;
+        }
+
+        .table-wrapper:before {
+            content: "Scroll horizontally >";
+            display: block;
+            text-align: right;
+            font-size: 11px;
+            color: white;
+            padding: 0 0 10px;
+        }
+
+        .fl-table thead, .fl-table tbody, .fl-table thead th {
+            display: block;
+        }
+
+        .fl-table thead th:last-child {
+            border-bottom: none;
+        }
+
+        .fl-table thead {
+            float: left;
+        }
+
+        .fl-table tbody {
+            width: auto;
+            position: relative;
+            overflow-x: auto;
+        }
+
+        .fl-table td, .fl-table th {
+            padding: 20px .625em .625em .625em;
+            height: 60px;
+            vertical-align: middle;
+            box-sizing: border-box;
+            overflow-x: hidden;
+            overflow-y: auto;
+            width: 120px;
+            font-size: 13px;
+            text-overflow: ellipsis;/
+        }
+
+        .fl-table thead th {
+            text-align: left;
+            border-bottom: 1px solid #f7f7f9;
+        }
+
+        .fl-table tbody tr {
+            display: table-cell;
+        }
+
+        .fl-table tbody tr:nth-child(odd) {
+            background: none;
+        }
+
+        .fl-table tr:nth-child(even) {
+            background: transparent;
+        }
+
+        .fl-table tr td:nth-child(odd) {
+            background: #F8F8F8;
+            border-right: 1px solid #E6E4E4;
+        }
+
+        .fl-table tr td:nth-child(even) {
+            border-right: 1px solid #E6E4E4;
+        }
+
+        .fl-table tbody td {
+            display: block;
+            text-align: center;
+        }
+    }
+
+</style>
+{% endblock %}
+
+{% block lie %}
+    <div class="table-wrapper">
+    <h2>老师列表</h2>
+        <table class="fl-table" style="table-layout: fixed;width: 100%">
+            <thead>
+                <tr>
+                    <th>老师ID</th>
+                    <th>老师</th>
+                    <th>授课班级</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody >
+                {% for i in tea_list  %}
+                    <tr>
+                        <td>{{ i.id }}</td>
+                        <td>{{ i.name }}</td>
+                        <td>{{ i.class_name }}</td>
+                        <td>
+                            <button><a href="/update_teacher/?update_teacher_id={{ i.id }}">修改</a></button>
+                            <button><a href="/delete_teacher/?delete_teacher_id={{ i.id }}">删除</a></button>
+                        </td>
+                    </tr>
+                {% endfor %}
+            <tbody>
+            <tr>
+                <td></td>
+                <td><button><a href="/add_teacher/">新增</a></button></td>
+                <td><input type="submit" value="提交"></td>
+            </tr>
+        </table>
+    </div>
+{% endblock %}
+{% block js %}
+{% endblock %}
+
